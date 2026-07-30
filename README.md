@@ -40,6 +40,7 @@ Install or copy both Skill directories into the active Codex skills directory. T
 
 ```bash
 python3 scripts/sync_suite_resources.py --check
+python3 scripts/validate_skills.py skills/orchestrate-project-sessions skills/team-mode
 python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" skills/orchestrate-project-sessions
 python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" skills/team-mode
 python3 -m unittest discover -s tests -v
