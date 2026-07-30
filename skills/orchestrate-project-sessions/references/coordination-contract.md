@@ -16,6 +16,8 @@ Choose the lightest surface that satisfies the work's actual needs.
 
 Do not delegate merely to complete a role sequence. Count briefing, monitoring, inspection, waiting, and rework as coordination cost.
 
+For one synthesis across several small, homogeneous sources, keep the work in the main thread or use one Explorer. Fan out to multiple read-only children only when each owns an independent evidence slice and the source volume, latency, or context-isolation benefit outweighs its separate brief, wait, inspection, and merge cost.
+
 ## Required Dispatch Packet
 
 Define these fields before every dispatch:

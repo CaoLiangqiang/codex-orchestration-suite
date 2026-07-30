@@ -22,6 +22,7 @@ Keep Project Sessions and Team Mode independently invocable. Read [coordination-
 
 - Keep short, tightly coupled, or decision-heavy work in the controller.
 - Use `$team-mode` for bounded work that can return inside the current task and does not need durable user-visible history.
+- For one bounded synthesis across several small, homogeneous sources, stay in the controller or use one Explorer. Use multiple Explorers only when each owns an independent evidence slice and its parallelism or context-isolation benefit outweighs the added coordination cost.
 - Create a Local, Worktree, or read-only task when the work needs independent steering, durable history, long-running follow-up, or an isolated checkout.
 - Never treat Team Mode activation as authority to create a user-visible Codex task.
 

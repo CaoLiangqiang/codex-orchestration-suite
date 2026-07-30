@@ -40,6 +40,16 @@ class SuiteContractTests(unittest.TestCase):
         self.assertIn("Use a Git Worktree for concurrent code-writing tasks", skill)
         self.assertIn("`$team-mode`", skill)
 
+    def test_suite_limits_homogeneous_read_only_fanout(self) -> None:
+        contract = (ROOT / "shared" / "coordination-contract.md").read_text(encoding="utf-8")
+        project_skill = (PROJECT_SKILL / "SKILL.md").read_text(encoding="utf-8")
+
+        for content in (contract, project_skill):
+            self.assertIn("several small, homogeneous sources", content)
+            self.assertIn("one Explorer", content)
+            self.assertIn("independent evidence slice", content)
+            self.assertIn("coordination cost", content)
+
     def test_team_skill_cannot_escape_into_durable_or_recursive_work(self) -> None:
         skill = (TEAM_SKILL / "SKILL.md").read_text(encoding="utf-8")
         integration = (TEAM_SKILL / "references" / "project-sessions-integration.md").read_text(
