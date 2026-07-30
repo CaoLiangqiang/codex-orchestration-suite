@@ -43,7 +43,7 @@ tests/
 Install both Skills and the five Team Mode Agent profiles globally for Codex:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/CaoLiangqiang/codex-orchestration-suite/main/scripts/install.sh | bash
+curl -fsSL https://github.com/CaoLiangqiang/codex-orchestration-suite/raw/refs/heads/main/scripts/install.sh | bash
 ```
 
 The installer validates every downloaded profile and stops without installing anything if a same-named file under `~/.codex/agents/` has different content. It respects `CODEX_HOME` for the Agent-profile destination. After installation, open a new Codex task or restart Codex.

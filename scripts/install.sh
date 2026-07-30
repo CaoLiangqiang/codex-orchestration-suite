@@ -6,7 +6,7 @@ REF="${CODEX_ORCHESTRATION_REF:-main}"
 CODEX_DIR="${CODEX_HOME:-${HOME}/.codex}"
 AGENTS_DIR="${CODEX_DIR}/agents"
 SKILL_SOURCE="https://github.com/${REPOSITORY}/tree/${REF}"
-PROFILE_BASE_URL="https://raw.githubusercontent.com/${REPOSITORY}/${REF}/skills/team-mode/assets/agent-profiles"
+PROFILE_BASE_URL="https://github.com/${REPOSITORY}/raw/refs/heads/${REF}/skills/team-mode/assets/agent-profiles"
 PROFILE_NAMES=(
   "Complex Executor.toml"
   "Executor.toml"
