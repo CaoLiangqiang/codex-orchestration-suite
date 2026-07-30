@@ -13,8 +13,10 @@ Describe the independently verifiable result.
 ## Benefit
 State why this work belongs in a durable task instead of the controller or a native subagent.
 
-## Context / Sources
-- Required project facts:
+## Context
+Summarize only the project facts needed for this task.
+
+## Sources
 - Required files, URLs, datasets, or decisions:
 
 ## Ownership
@@ -62,10 +64,11 @@ Return:
 1. outcome;
 2. changed files or sources;
 3. verification evidence;
-4. child Agents or durable tasks created;
-5. unresolved risks;
-6. recommended controller action.
+4. unresolved risks;
+5. recommended controller action.
 ```
+
+When `Subagent policy` is `allowed`, also report every child Agent session, role, changed artifact, verification result, and consumed concurrency slot.
 
 ## Controller session board
 
@@ -82,12 +85,14 @@ Store at `.codex/session-board.md` only for projects that benefit from a durable
 
 ## Tasks
 
-| Order | Task | Task ID | Environment | Ownership | Dependencies | Child policy | Status | Evidence |
-|---:|---|---|---|---|---|---|---|---|
-| 10 | Requirements | pending | Read-only | PRD | None | disabled | planned | |
+| Order | Task | Task ID | Environment | Ownership | Dependencies | Status | Evidence |
+|---:|---|---|---|---|---|---|---|
+| 10 | Requirements | pending | Read-only | PRD | None | planned | |
 
 Allowed status values:
 `planned`, `dispatched`, `running`, `attention`, `blocked`, `complete`, `verified`, `integrated`, `rejected`.
+
+Add a `Child policy` column when any worker may use Team Mode; record `disabled` or the permitted roles, child limit, write boundary, and shared concurrency budget.
 
 ## Decisions
 

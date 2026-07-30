@@ -1,7 +1,7 @@
 interface:
-  display_name: "Project Sessions"
-  short_description: "Coordinate durable Codex tasks and worktrees"
-  default_prompt: "Use $orchestrate-project-sessions to coordinate this project across durable Codex tasks and worktrees."
+  display_name: "项目多会话总控"
+  short_description: "在同一项目内创建、分派、追踪并验收多个 Codex 任务"
+  default_prompt: "使用 $orchestrate-project-sessions 将当前任务设为项目总控，拆分并协调多个独立 Codex 任务直到完成验收。"
 
 policy:
   allow_implicit_invocation: true

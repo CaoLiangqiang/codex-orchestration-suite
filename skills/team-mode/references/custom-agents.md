@@ -53,7 +53,7 @@ The guard is not a fifth working role. Codex selects it only when the parent omi
 
 These model IDs are repository defaults verified in the intended installation. Terra High is the default substantial executor because the main thread retains architecture decisions and final acceptance; Sol High remains the independent review tier for concrete consequential risks. If a configured model is unavailable, ask before substituting another model, preserve the role boundary, and verify the actual runtime trace after the change.
 
-Use the canonical templates bundled in [`assets/agent-profiles`](../assets/agent-profiles). A full suite checkout also keeps synchronized copies in the repository root `agents/` directory. Do not duplicate or rewrite their developer instructions from memory.
+Use the canonical templates in the repository's [`agents`](https://github.com/oil-oil/codex-team-mode/tree/main/agents) directory. Do not duplicate or rewrite their developer instructions from memory.
 
 ## Choose The Scope
 
