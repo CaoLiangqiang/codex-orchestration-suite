@@ -1,0 +1,7 @@
+interface:
+  display_name: "Project Sessions"
+  short_description: "Coordinate durable Codex tasks and worktrees"
+  default_prompt: "Use $orchestrate-project-sessions to coordinate this project across durable Codex tasks and worktrees."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Team Mode"
+  short_description: "Coordinate focused subagents inside one task"
+  default_prompt: "Use $team-mode to coordinate the smallest useful set of focused subagents for this task."
+
+policy:
+  allow_implicit_invocation: true
