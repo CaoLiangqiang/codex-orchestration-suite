@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -22,6 +23,24 @@ validate_skills = load_script("validate_skills", ROOT / "scripts" / "validate_sk
 
 
 class ValidationScriptTests(unittest.TestCase):
+    def test_installer_has_safe_profile_conflict_gate(self) -> None:
+        installer = ROOT / "scripts" / "install.sh"
+        result = subprocess.run(
+            ["bash", "-n", str(installer)],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+        content = installer.read_text(encoding="utf-8")
+        conflict_gate = content.index('if (( ${#conflicts[@]} > 0 )); then')
+        skill_install = content.index('npx --yes skills add "${SKILL_SOURCE}"')
+        profile_install = content.index('install -m 0644')
+        self.assertLess(conflict_gate, skill_install)
+        self.assertLess(conflict_gate, profile_install)
+        self.assertIn('CODEX_DIR="${CODEX_HOME:-${HOME}/.codex}"', content)
+
     def test_suite_skills_pass_portable_validator(self) -> None:
         for name in ("orchestrate-project-sessions", "team-mode"):
             with self.subTest(name=name):

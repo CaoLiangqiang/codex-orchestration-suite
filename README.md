@@ -38,6 +38,24 @@ scripts/sync_suite_resources.py
 tests/
 ```
 
+## Installation
+
+Install both Skills and the five Team Mode Agent profiles globally for Codex:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/CaoLiangqiang/codex-orchestration-suite/main/scripts/install.sh | bash
+```
+
+The installer validates every downloaded profile and stops without installing anything if a same-named file under `~/.codex/agents/` has different content. It respects `CODEX_HOME` for the Agent-profile destination. After installation, open a new Codex task or restart Codex.
+
+To install only the Skills through the open Agent Skills CLI:
+
+```bash
+npx skills add CaoLiangqiang/codex-orchestration-suite --skill orchestrate-project-sessions --skill team-mode --agent codex --global --yes
+```
+
+This CLI-only command does not install the custom Agent profiles required by Team Mode.
+
 ## Local installation
 
 Install or copy both Skill directories into the active Codex skills directory. Team Mode additionally requires the five TOML profiles under `agents/` or `skills/team-mode/assets/agent-profiles/` to be copied to `~/.codex/agents/` or a trusted project's `.codex/agents/` directory. Inspect existing same-named files before replacing them, then open a new Codex task or restart Codex.
