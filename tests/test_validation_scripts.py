@@ -40,6 +40,8 @@ class ValidationScriptTests(unittest.TestCase):
         self.assertLess(conflict_gate, skill_install)
         self.assertLess(conflict_gate, profile_install)
         self.assertIn('CODEX_DIR="${CODEX_HOME:-${HOME}/.codex}"', content)
+        self.assertNotIn("tomllib", content)
+        self.assertNotIn("python3", content)
 
     def test_suite_skills_pass_portable_validator(self) -> None:
         for name in ("orchestrate-project-sessions", "team-mode"):

@@ -14,8 +14,15 @@ PROFILE_NAMES=(
   "Reviewer.toml"
   "default.toml"
 )
+PROFILE_AGENT_NAMES=(
+  "Complex Executor"
+  "Executor"
+  "Explorer"
+  "Reviewer"
+  "default"
+)
 
-for command_name in cmp curl install mktemp npx python3; do
+for command_name in cmp curl grep install mktemp npx; do
   if ! command -v "${command_name}" >/dev/null 2>&1; then
     echo "error: required command not found: ${command_name}" >&2
     exit 1
@@ -34,30 +41,22 @@ for profile_name in "${PROFILE_NAMES[@]}"; do
     --output "${profile_download_dir}/${profile_name}"
 done
 
-python3 - "${profile_download_dir}" <<'PY'
-import sys
-import tomllib
-from pathlib import Path
-
-profile_dir = Path(sys.argv[1])
-expected = {
-    "Complex Executor.toml": "Complex Executor",
-    "Executor.toml": "Executor",
-    "Explorer.toml": "Explorer",
-    "Reviewer.toml": "Reviewer",
-    "default.toml": "default",
-}
-
-for filename, expected_name in expected.items():
-    path = profile_dir / filename
-    with path.open("rb") as profile_file:
-        profile = tomllib.load(profile_file)
-    if profile.get("name") != expected_name:
-        raise SystemExit(f"error: {filename} has unexpected Agent name")
-    for key in ("description", "model", "model_reasoning_effort", "sandbox_mode", "developer_instructions"):
-        if not profile.get(key):
-            raise SystemExit(f"error: {filename} is missing {key}")
-PY
+required_profile_keys=(description model model_reasoning_effort sandbox_mode developer_instructions)
+for profile_index in "${!PROFILE_NAMES[@]}"; do
+  profile_name="${PROFILE_NAMES[profile_index]}"
+  profile_path="${profile_download_dir}/${profile_name}"
+  expected_name_line="name = \"${PROFILE_AGENT_NAMES[profile_index]}\""
+  if ! grep -Fqx "${expected_name_line}" "${profile_path}"; then
+    echo "error: ${profile_name} has an unexpected Agent name" >&2
+    exit 1
+  fi
+  for required_key in "${required_profile_keys[@]}"; do
+    if ! grep -Eq "^${required_key}[[:space:]]*=" "${profile_path}"; then
+      echo "error: ${profile_name} is missing ${required_key}" >&2
+      exit 1
+    fi
+  done
+done
 
 conflicts=()
 for profile_name in "${PROFILE_NAMES[@]}"; do
